@@ -1,0 +1,402 @@
+[
+  {
+    "id": "is111",
+    "criteria": "1.1.1",
+    "title": "Non-text Content",
+    "level": "A",
+    "description": "All non-text content that is presented to the user has a text alternative that serves the equivalent purpose.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv-all.html"
+  },
+  {
+    "id": "is121",
+    "criteria": "1.2.1",
+    "title": "Audio-only and Video-only (Prerecorded)",
+    "level": "A",
+    "description": "Prerecorded video and audio have alternate content.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-av-only-alt.html"
+  },
+  {
+    "id": "is122",
+    "criteria": "1.2.2",
+    "title": "Captions (Prerecorded)",
+    "level": "A",
+    "description": "Captions are provided for prerecorded video.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-captions.html"
+  },
+  {
+    "id": "is123",
+    "criteria": "1.2.3",
+    "title": "Audio Description or Media Alternative (Prerecorded)",
+    "level": "A",
+    "description": "An audio description or alternative content is provided for video content.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-audio-desc.html"
+  },
+  {
+    "id": "is124",
+    "criteria": "1.2.4'",
+    "title": "Captions (Live)",
+    "level": "AA",
+    "description": "Captions are provided for live video.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-real-time-captions.html"
+  },
+  {
+    "id": "is125",
+    "criteria": "1.2.5",
+    "title": "Audio Description (Prerecorded)",
+    "level": "AA",
+    "description": "An audio description is provided for video content.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-audio-desc-only.html"
+  },
+  {
+    "id": "is131",
+    "criteria": "1.3.1",
+    "title": "Info and Relationships",
+    "level": "A",
+    "description": "Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html"
+  },
+  {
+    "id": "is132",
+    "criteria": "1.3.2",
+    "title": "Meaningful Sequence",
+    "level": "A",
+    "description": "When the sequence in which content is presented affects its meaning, a correct reading sequence can be programmatically determined.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-sequence.html"
+  },
+  {
+    "id": "is133",
+    "criteria": "1.3.3",
+    "title": "Sensory Characteristics",
+    "level": "A",
+    "description": "Instructions provided for understanding and operating content do not rely solely on sensory characteristics of components such as shape, size, visual location, orientation, or sound.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-understanding.html"
+  },
+  {
+    "id": "is134",
+    "criteria": "1.3.4",
+    "title": "Orientation",
+    "level": "AA",
+    "description": "Content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific display orientation is essential.",
+    "reference": "https://www.w3.org/WAI/WCAG21/Understanding/orientation.html"
+  },
+  {
+    "id": "is135",
+    "criteria": "1.3.5",
+    "title": "Identify Input Purpose",
+    "level": "AA",
+    "description": "The purpose of each input field collecting information about the user can be programmatically determined when: 1 )The input field serves a purpose identified in the Input Purposes for User Interface Components section; and 2) The content is implemented using technologies with support for identifying the expected meaning for form input data.",
+    "reference": "https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
+  },
+  {
+    "id": "is141",
+    "criteria": "1.4.1",
+    "title": "Use of Color",
+    "level": "A",
+    "description": "Color is not used as the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a visual element.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-without-color.html"
+  },
+  {
+    "id": "is142",
+    "criteria": "1.4.2",
+    "title": "Audio Control",
+    "level": "A",
+    "description": "If any audio on a Web page plays automatically for more than 3 seconds, either a mechanism is available to pause or stop the audio, or a mechanism is available to control audio volume independently from the overall system volume level.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-dis-audio.html"
+  },
+  {
+    "id": "is143",
+    "criteria": "1.4.3",
+    "title": "Contrast (Minimum)",
+    "level": "AA",
+    "description": "The visual presentation of text and images of text has a contrast ratio of at least 4.5:1. Large-scale text and images of large-scale text have a contrast ratio of at least 3:1.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html"
+  },
+  {
+    "id": "is144",
+    "criteria": "1.4.4",
+    "title": "Resize text",
+    "level": "AA",
+    "description": "Except for captions and images of text, text can be resized without assistive technology up to 200 percent without loss of content or functionality.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-scale.html"
+  },
+  {
+    "id": "is145",
+    "criteria": "1.4.5",
+    "title": "Images of Text",
+    "level": "AA",
+    "description": "If the technologies being used can achieve the visual presentation, text is used to convey information rather than images of text.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-text-presentation.html"
+  },
+  {
+    "id": "is1410",
+    "criteria": "1.4.10",
+    "title": "Reflow",
+    "level": "AA",
+    "description": "Content can be presented without loss of information or functionality, and without requiring scrolling in two dimensions for: 1) Vertical scrolling content at a width equivalent to 320 CSS pixels; 2) Horizontal scrolling content at a height equivalent to 256 CSS pixels; 3) Except for parts of the content which require two-dimensional layout for usage or meaning.",
+    "reference": "https://www.w3.org/WAI/WCAG21/Understanding/reflow.html"
+  },
+  {
+    "id": "is1411",
+    "criteria": "1.4.11",
+    "title": "Non-text Contrast",
+    "level": "AA",
+    "description": "The visual presentation of user interface components and graphical objects have a contrast ratio of at least 3:1 against adjacent color(s).",
+    "reference": "https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html"
+  },
+  {
+    "id": "is1412",
+    "criteria": "1.4.12",
+    "title": "Text Spacing",
+    "level": "AA",
+    "description": "In content implemented using markup languages that support the following text style properties, no loss of content or functionality occurs by setting all of the following and by changing no other style property: Line height (line spacing) to at least 1.5 times the font size; Spacing following paragraphs to at least 2 times the font size; Letter spacing (tracking) to at least 0.12 times the font size; Word spacing to at least 0.16 times the font size.",
+    "reference": "https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html"
+  },
+  {
+    "id": "is1413",
+    "criteria": "1.4.13",
+    "title": "Content on Hover or Focus",
+    "level": "AA",
+    "description": "Where receiving and then removing pointer hover or keyboard focus triggers additional content to become visible and then hidden, the following are true: 1) A mechanism is available to dismiss the additional content without moving pointer hover or keyboard focus, unless the additional content communicates an input error or does not obscure or replace other content; 2) If pointer hover can trigger the additional content, then the pointer can be moved over the additional content without the additional content disappearing; 3) The additional content remains visible until the hover or focus trigger is removed, the user dismisses it, or its information is no longer valid.",
+    "reference": "https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html"
+  },
+  {
+    "id": "is211",
+    "criteria": "2.1.1",
+    "title": "Keyboard",
+    "level": "A",
+    "description": "All functionality of the content is operable through a keyboard interface.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/keyboard-operation-keyboard-operable.html"
+  },
+  {
+    "id": "is212",
+    "criteria": "2.1.2",
+    "title": "No Keyboard Trap",
+    "level": "A",
+    "description": "If keyboard focus can be moved to a component of the page using a keyboard interface, then focus can be moved away from that component using only a keyboard interface.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/keyboard-operation-trapping.html"
+  },
+  {
+    "id": "is214",
+    "criteria": "2.1.4",
+    "title": "Character Key Shortcuts",
+    "level": "A",
+    "description": "If a keyboard shortcut is implemented in content using only letter (including upper- and lower-case letters), punctuation, number, or symbol characters, then at least one of the following is true: 1) You can turn the shortcut off, 2) You can remap the shortcut, or 3) the shortcut is only active when that component has focus.",
+    "reference": "https://www.w3.org/WAI/WCAG21/Understanding/character-key-shortcuts.html"
+  },
+  {
+    "id": "is221",
+    "criteria": "2.2.1",
+    "title": "Timing Adjustable",
+    "level": "A",
+    "description": "Users have the option to turn off, adjust or extend any time limit set by the content unless it is essential or longer than 20 hours.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-required-behaviors.html"
+  },
+  {
+    "id": "is222",
+    "criteria": "2.2.2",
+    "title": "Pause, Stop, Hide",
+    "level": "A",
+    "description": "Users have the ability to pause, stop, or hide any content that is auto-updating, moving, blinking or scrolling.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-pause.html"
+  },
+  {
+    "id": "is231",
+    "criteria": "2.3.1",
+    "title": "Three Flashes or Below Threshold",
+    "level": "A",
+    "description": "Web pages do not contain anything that flashes more than three times in any one second period.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/seizure-does-not-violate.html"
+  },
+  {
+    "id": "is241",
+    "criteria": "2.4.1",
+    "title": "Bypass Blocks",
+    "level": "A",
+    "description": "A mechanism is available to bypass blocks of content that are repeated on multiple Web pages.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-skip.html"
+  },
+  {
+    "id": "is242",
+    "criteria": "2.4.2",
+    "title": "Page Titled",
+    "level": "A",
+    "description": "Web pages have titles that describe topic or purpose.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-title.html"
+  },
+  {
+    "id": "is243",
+    "criteria": "2.4.3",
+    "title": "Focus Order",
+    "level": "A",
+    "description": "Focusable components receive focus in an order that preserves meaning and operability.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-focus-order.html"
+  },
+  {
+    "id": "is244",
+    "criteria": "2.4.4",
+    "title": "Link Purpose (In Context)",
+    "level": "A",
+    "description": "The purpose of each link can be determined from the link text alone.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-refs.html"
+  },
+  {
+    "id": "is245",
+    "criteria": "2.4.5",
+    "title": "Multiple Ways",
+    "level": "AA",
+    "description": "More than one way is available to locate a Web page within a set of Web pages except where the Web Page is the result of, or a step in, a process.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-mult-loc.html"
+  },
+  {
+    "id": "is246",
+    "criteria": "2.4.6",
+    "title": "Headings and Labels",
+    "level": "AA",
+    "description": "Headings and labels describe topic or purpose.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-descriptive.html"
+  },
+  {
+    "id": "is247",
+    "criteria": "2.4.7",
+    "title": "Focus Visible",
+    "level": "AA",
+    "description": "Any keyboard operable user interface has a mode of operation where the keyboard focus indicator is visible.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-focus-visible.html"
+  },
+  {
+    "id": "is251",
+    "criteria": "2.5.1",
+    "title": "Pointer Gestures",
+    "level": "A",
+    "description": "All functionality that uses multipoint or path-based gestures for operation can be operated with a single pointer without a path-based gesture, unless a multipoint or path-based gesture is essential.",
+    "reference": "https://www.w3.org/WAI/WCAG21/Understanding/pointer-gestures.html"
+  },
+  {
+    "id": "is252",
+    "criteria": "2.5.2",
+    "title": "Pointer Cancellation",
+    "level": "A",
+    "description": "For functionality that can be operated using a single pointer, at least one of the following is true: 1) The down-event is not used to execute any function; 2) The action can be aborted or undone; 3) The up-event reverses the down-event; or 4) Completing the function on the down-event is essential.",
+    "reference": "https://www.w3.org/WAI/WCAG21/Understanding/pointer-cancellation.html"
+  },
+  {
+    "id": "is253",
+    "criteria": "2.5.3",
+    "title": "Label in Name",
+    "level": "A",
+    "description": "For user interface components with labels that include text or images of text, the name contains the text that is presented visually.",
+    "reference": "https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html"
+  },
+  {
+    "id": "is254",
+    "criteria": "2.5.4",
+    "title": "Motion Actuation",
+    "level": "A",
+    "description": "Functionality that can be operated by device motion or user motion can also be operated by user interface components and responding to the motion can be disabled to prevent accidental actuation, except when 1) The motion is used to operate functionality through an accessibility supported interface; or 2) The motion is essential for the function and doing so would invalidate the activity.",
+    "reference": "https://www.w3.org/WAI/WCAG21/Understanding/motion-actuation.html"
+  },
+  {
+    "id": "is311",
+    "criteria": "3.1.1",
+    "title": "Language of Page",
+    "level": "A",
+    "description": "The default human language of each Web page can be programmatically determined.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning-doc-lang-id.html"
+  },
+  {
+    "id": "is312",
+    "criteria": "3.1.2",
+    "title": "Language of Parts",
+    "level": "AA",
+    "description": "The default human language of each passage or phrase can be programmatically determined if it differs from the surrounding content.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning-other-lang-id.html"
+  },
+  {
+    "id": "is321",
+    "criteria": "3.2.1",
+    "title": "On Focus",
+    "level": "A",
+    "description": "When any component receives focus, it does not initiate a change of context.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/consistent-behavior-receive-focus.html"
+  },
+  {
+    "id": "is322",
+    "criteria": "3.2.2",
+    "title": "On Input",
+    "level": "A",
+    "description": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/consistent-behavior-unpredictable-change.html",
+    "reference": "Changing the setting of any user interface component does not automatically cause a change of context unless the user has been advised of the behavior before using the component."
+  },
+  {
+    "id": "is323",
+    "criteria": "3.2.3",
+    "title": "Consistent Navigation",
+    "level": "AA",
+    "description": "Navigational mechanisms that are repeated on multiple Web pages within a set of Web pages occur in the same relative order each time they are repeated, unless a change is initiated by the user.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/consistent-behavior-consistent-locations.html"
+  },
+  {
+    "id": "is324",
+    "criteria": "3.2.4",
+    "title": "Consistent Identification",
+    "level": "AA",
+    "description": "Components that have the same functionality within a set of Web pages are identified consistently.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/consistent-behavior-consistent-functionality.html"
+  },
+  {
+    "id": "is331",
+    "criteria": "3.3.1",
+    "title": "Error Identification",
+    "level": "A",
+    "description": "If an input error is automatically detected, the item that is in error is identified and the error is described to the user in text.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-identified.html"
+  },
+  {
+    "id": "is332",
+    "criteria": "3.3.2",
+    "title": "Labels or Instructions",
+    "level": "A",
+    "description": "Labels or instructions are provided when content requires user input.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-cues.html"
+  },
+  {
+    "id": "is333",
+    "criteria": "3.3.3",
+    "title": "Error Suggestion",
+    "level": "AA",
+    "description": "If an input error is automatically detected and suggestions for correction are known, then the suggestions are provided to the user.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-suggestions.html"
+  },
+  {
+    "id": "is334",
+    "criteria": "3.3.4",
+    "title": "Error Prevention (Legal, Financial, Data)",
+    "level": "AA",
+    "description": "For Web pages that cause legal commitments or financial transactions for the user to occur, that modify or delete user-controllable data in data storage systems, or that submit user test responses, the user must have the option to reverse the submission, check the data for input error or be able to review the information before submission.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-reversible.html"
+  },
+  {
+    "id": "is411",
+    "criteria": "4.1.1",
+    "title": "Parsing",
+    "level": "A",
+    "description": "In content implemented using markup languages, elements have complete start and end tags, elements are nested according to their specifications, elements do not contain duplicate attributes, and any IDs are unique, except where the specifications allow these features.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-parses.html"
+  },
+  {
+    "id": "is412",
+    "criteria": "4.1.2",
+    "title": "Name, Role, Value",
+    "level": "A",
+    "description": "For all user interface components, the name and role can be programmatically determined.",
+    "reference": "https://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-rsv.html"
+  },
+  {
+    "id": "is413",
+    "criteria": "4.1.3",
+    "title": "Status Messages",
+    "level": "AA",
+    "description": "In content implemented using markup languages, status messages can be programmatically determined through role or properties such that they can be presented to the user by assistive technologies without receiving focus.",
+    "reference": "https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html"
+  }
+]

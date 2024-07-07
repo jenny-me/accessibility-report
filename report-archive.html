@@ -1,0 +1,2205 @@
+<!DOCTYPE html>
+<html class="no-js light-mode" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Website Review 2024 - Accessibility</title>
+    <meta name="description" content="" />
+
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" />
+    <link rel="stylesheet" href="stylesheets/screen.css" />
+    <script src="js/vue.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      document.documentElement.className = document.documentElement.className.replace("no-js", "js");
+    </script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <header class="mast" role="banner">
+        <div class="container">
+          <button class="mode-toggle"><span class="visuallyhidden">Dark Mode</span></button>
+        </div>
+      </header>
+
+      <div class="section-top">
+        <div class="container">
+          <p>Sample Site</p>
+          <h1>Accessibility Report</h1>
+        </div>
+      </div>
+
+      <main class="maininfo" id="main" role="main">
+        <div class="content">
+          <section class="js-warning">
+            <div class="container">
+              <h2>Loading...</h2>
+              <small>This report requires javascript to be enabled. If the report is not loading, javascript may need to be enabled in your browser.</small>
+            </div>
+          </section>
+          <section id="dashboard">
+            <div class="section-subnav">
+              <div class="container">
+                <ul>
+                  <li><a href="#overview">Overview</a></li>
+                  <li><a href="#results">Results</a></li>
+                  <li><a href="#design">Design Review</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <section id="overview">
+              <div class="card-container">
+                <div class="report-card">
+                  <h2>Scope of Report</h2>
+                  <table class="table">
+                    <tr>
+                      <th>Conformance Target</th>
+                      <td>WCAG 2.1 Level AA</td>
+                    </tr>
+                    <tr>
+                      <th>Date of Review</th>
+                      <td>June 2024</td>
+                    </tr>
+
+                    <tr>
+                      <th>Number of Issues Found</th>
+                      <td>{{ getTotalFixes }}</td>
+                    </tr>
+                    <tr v-if="this.showQuotes.overallTotal === 'true'">
+                      <th>Estimated time for fixes</th>
+                      <td>{{ getQuoteTotal }} hours</td>
+                    </tr>
+                  </table>
+                </div>
+
+                <div class="report-card">
+                  <h2>Summary</h2>
+                  <p>This is an example of an accessibility report built using Vue.JS. The site and list of issues are made up and for sample data only.</p>
+                </div>
+
+                <div class="report-card">
+                  <h2>Report Overview</h2>
+                  <p>WCAG guidelines are divided into four principles, briefly describing the goal of the guidelines. The guidelines are further divided into three levels that indicate the priority of conformance. Level A is the highest priority and Level AAA is lowest priority. This report targets the mid-range Level AA conformance.</p>
+                  <p>Below is a scorecard of how many guidelines have passed for each principle.</p>
+                  <h3>Reported Scorecard</h3>
+
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Principle</th>
+                        <th>Level A</th>
+                        <th>Level AA</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>1. Perceivable</th>
+                        <td>{{ getAScore('1') }}</td>
+                        <td>{{ getAAScore('1') }}</td>
+                      </tr>
+                      <tr>
+                        <th>2. Operable</th>
+                        <td>{{ getAScore('2') }}</td>
+                        <td>{{ getAAScore('2') }}</td>
+                      </tr>
+                      <tr>
+                        <th>3. Understandable</th>
+                        <td>{{ getAScore('3') }}</td>
+                        <td>{{ getAAScore('3') }}</td>
+                      </tr>
+                      <tr>
+                        <th>4. Robust</th>
+                        <td>{{ getAScore('4') }}</td>
+                        <td>{{ getAAScore('4') }}</td>
+                      </tr>
+                      <tr class="total">
+                        <th>Total</th>
+                        <td>{{ getAScore('5') }}</td>
+                        <td>{{ getAAScore('5') }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <h3>Scorecard After Fixes</h3>
+
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Principle</th>
+                        <th>Level A</th>
+                        <th>Level AA</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th>1. Perceivable</th>
+                        <td>{{ getNewAScore('1') }}</td>
+                        <td>{{ getNewAAScore('1') }}</td>
+                      </tr>
+                      <tr>
+                        <th>2. Operable</th>
+                        <td>{{ getNewAScore('2') }}</td>
+                        <td>{{ getNewAAScore('2') }}</td>
+                      </tr>
+                      <tr>
+                        <th>3. Understandable</th>
+                        <td>{{ getNewAScore('3') }}</td>
+                        <td>{{ getNewAAScore('3') }}</td>
+                      </tr>
+                      <tr>
+                        <th>4. Robust</th>
+                        <td>{{ getNewAScore('4') }}</td>
+                        <td>{{ getNewAAScore('4') }}</td>
+                      </tr>
+                      <tr class="total">
+                        <th>Total</th>
+                        <td>{{ getNewAScore('5') }}</td>
+                        <td>{{ getNewAAScore('5') }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="report-card">
+                  <h2>Issues</h2>
+
+                  <div class="tier-list" v-for="item in generalTiers">
+                    <h3>{{ item.tier }}</h3>
+                    <p>{{ item.description }}</p>
+                    <ul>
+                      <li v-for="issue in filterTier(item.tier)">
+                        <span class="criteria">{{ issue.criteria }}</span>
+                        <span class="description">{{ issue.description }}</span>
+                        <span class="quote" v-if="showQuotes.individualItemQuotes === 'true'">{{ issue.quote }} hour(s)</span>
+                        <span class="completed">
+                          <img src="images/checkbox-checked.svg" alt="Complete" v-if="issue.completed" />
+                          <img src="images/checkbox-unchecked.svg" alt="Incomplete" v-else />
+                        </span>
+                        <span class="details"
+                          ><a :href="'#results?issue=is' + issue.criteria.split('.').join('')"><img src="images/icon-info.svg" alt="Details" /></a
+                        ></span>
+                      </li>
+                      <li v-if="filterTier(item.tier).length === 0">There are no issues at this level.</li>
+                    </ul>
+                    <p v-if="showQuotes.totalByTier === 'true'"><strong>Total Time for Fixes</strong>: {{ getTierTotal(item.tier) }} hour(s)</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section id="results">
+              <div class="card-container">
+                <div id="filter-set">
+                  <button id="showFail">Show Failed</button>
+                  <button id="showPass">Show Passed</button>
+                  <button id="showAll">Show All</button>
+                </div>
+                <h2>Principle 1: Perceivable</h2>
+                <h3>1.1 Text Alternative</h3>
+                <div class="report-card" :class="checkIssue('1.1.1')">
+                  <h4 id="is111">
+                    1.1.1 Non-text Content: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv-all.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>All non-text content that is presented to the user has a text alternative that serves the equivalent purpose.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.1.1') }}</span></p>
+                  <template v-if="checkIssue('1.1.1') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.1.1')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+                <h3>1.2 Time-based Media</h3>
+                <div class="report-card" :class="checkIssue('1.2.1')">
+                  <h4 id="is121">
+                    1.2.1 Audio-only and Video-only (Prerecorded): (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-av-only-alt.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Prerecorded video and audio have alternate content.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.2.1') }}</span></p>
+                  <template v-if="checkIssue('1.2.1') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.2.1')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+                <div class="report-card" :class="checkIssue('1.2.2')">
+                  <h4 id="is122">
+                    1.2.2 Captions (Prerecorded): (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-captions.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Captions are provided for prerecorded video.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.2.2') }}</span></p>
+                  <template v-if="checkIssue('1.2.2') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.2.2')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+                <div class="report-card" :class="checkIssue('1.2.3')">
+                  <h4 id="is123">
+                    1.2.3 Audio Description or Media Alternative (Prerecorded): (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-audio-desc.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>An audio description or alternative content is provided for video content.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.2.3') }}</span></p>
+                  <template v-if="checkIssue('1.2.3') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.2.3')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+                <div class="report-card" :class="checkIssue('1.2.4')">
+                  <h4 id="is124">
+                    1.2.4 Captions (Live): (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-real-time-captions.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Captions are provided for live video.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.2.4') }}</span></p>
+                  <template v-if="checkIssue('1.2.4') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.2.4')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('1.2.5')">
+                  <h4 id="is125">
+                    1.2.5 Audio Description (Prerecorded): (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/media-equiv-audio-desc-only.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>An audio description is provided for video content.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.2.5') }}</span></p>
+                  <template v-if="checkIssue('1.2.5') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.2.5')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <h3>1.3 Adaptable</h3>
+
+                <div class="report-card" :class="checkIssue('1.3.1')">
+                  <h4 id="is131">
+                    1.3.1 Info and Relationships: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-programmatic.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Information, structure, and relationships conveyed through presentation can be programmatically determined or are available in text.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.3.1') }}</span></p>
+                  <template v-if="checkIssue('1.3.1') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.3.1')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('1.3.2')">
+                  <h4 id="is132">
+                    1.3.2 Meaningful Sequence: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-sequence.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>When the sequence in which content is presented affects its meaning, a correct reading sequence can be programmatically determined.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.3.2') }}</span></p>
+                  <template v-if="checkIssue('1.3.2') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.3.2')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('1.3.3')">
+                  <h4 id="is133">
+                    1.3.3 Sensory Characteristics: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/content-structure-separation-understanding.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Instructions provided for understanding and operating content do not rely solely on sensory characteristics of components such as shape, size, visual location, orientation, or sound.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.3.3') }}</span></p>
+                  <template v-if="checkIssue('1.3.3') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.3.3')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('1.3.4')">
+                  <h4 id="is134">
+                    1.3.4 Orientation: (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/WAI/WCAG21/Understanding/orientation.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific display orientation is essential.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.3.4') }}</span></p>
+                  <template v-if="checkIssue('1.3.4') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.3.4')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('1.3.5')">
+                  <h4 id="is135">
+                    1.3.5 Identify Input Purpose: (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>The purpose of each input field collecting information about the user can be programmatically determined when: 1 )The input field serves a purpose identified in the Input Purposes for User Interface Components section; and 2) The content is implemented using technologies with support for identifying the expected meaning for form input data.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.3.5') }}</span></p>
+                  <template v-if="checkIssue('1.3.5') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.3.5')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <h3>1.4 Distinguishable</h3>
+
+                <div class="report-card" :class="checkIssue('1.4.1')">
+                  <h4 id="is141">
+                    1.4.1 Use of Color: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-without-color.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Color is not used as the only visual means of conveying information, indicating an action, prompting a response, or distinguishing a visual element.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.4.1') }}</span></p>
+                  <template v-if="checkIssue('1.4.1') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.4.1')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('1.4.2')">
+                  <h4 id="is142">
+                    1.4.2 Audio Control: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-dis-audio.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>If any audio on a Web page plays automatically for more than 3 seconds, either a mechanism is available to pause or stop the audio, or a mechanism is available to control audio volume independently from the overall system volume level.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.4.2') }}</span></p>
+                  <template v-if="checkIssue('1.4.2') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.4.2')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('1.4.3')">
+                  <h4 id="is143">
+                    1.4.3 Contrast (Minimum): (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>The visual presentation of text and images of text has a contrast ratio of at least 4.5:1. Large-scale text and images of large-scale text have a contrast ratio of at least 3:1.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.4.3') }}</span></p>
+                  <template v-if="checkIssue('1.4.3') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.4.3')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('1.4.4')">
+                  <h4 id="is144">
+                    1.4.4 Resize text: (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-scale.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Except for captions and images of text, text can be resized without assistive technology up to 200 percent without loss of content or functionality.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.4.4') }}</span></p>
+                  <template v-if="checkIssue('1.4.4') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.4.4')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('1.4.5')">
+                  <h4 id="is145">
+                    1.4.5 Images of Text: (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-text-presentation.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>If the technologies being used can achieve the visual presentation, text is used to convey information rather than images of text.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.4.5') }}</span></p>
+                  <template v-if="checkIssue('1.4.5') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.4.5')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('1.4.10')">
+                  <h4 id="is1410">
+                    1.4.10 Reflow: (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/WAI/WCAG21/Understanding/reflow.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Content can be presented without loss of information or functionality, and without requiring scrolling in two dimensions for: 1) Vertical scrolling content at a width equivalent to 320 CSS pixels; 2) Horizontal scrolling content at a height equivalent to 256 CSS pixels; 3) Except for parts of the content which require two-dimensional layout for usage or meaning.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.4.10') }}</span></p>
+                  <template v-if="checkIssue('1.4.10') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.4.10')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('1.4.11')">
+                  <h4 id="is1411">
+                    1.4.11 Non-text Contrast: (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>The visual presentation of user interface components and graphical objects have a contrast ratio of at least 3:1 against adjacent color(s).</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.4.11') }}</span></p>
+                  <template v-if="checkIssue('1.4.11') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.4.11')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('1.4.12')">
+                  <h4 id="is1412">
+                    1.4.12 Text Spacing: (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>In content implemented using markup languages that support the following text style properties, no loss of content or functionality occurs by setting all of the following and by changing no other style property: Line height (line spacing) to at least 1.5 times the font size; Spacing following paragraphs to at least 2 times the font size; Letter spacing (tracking) to at least 0.12 times the font size; Word spacing to at least 0.16 times the font size.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.4.12') }}</span></p>
+                  <template v-if="checkIssue('1.4.12') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.4.12')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('1.4.13')">
+                  <h4 id="is1413">
+                    1.4.13 Content on Hover or Focus: (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Where receiving and then removing pointer hover or keyboard focus triggers additional content to become visible and then hidden, the following are true: 1) A mechanism is available to dismiss the additional content without moving pointer hover or keyboard focus, unless the additional content communicates an input error or does not obscure or replace other content; 2) If pointer hover can trigger the additional content, then the pointer can be moved over the additional content without the additional content disappearing; 3) The additional content remains visible until the hover or focus trigger is removed, the user dismisses it, or its information is no longer valid.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('1.4.13') }}</span></p>
+                  <template v-if="checkIssue('1.4.13') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('1.4.13')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <h2>Principle 2: Operable</h2>
+
+                <h3>2.1 Keyboard Accessible</h3>
+
+                <div class="report-card" :class="checkIssue('2.1.1')">
+                  <h4 id="is211">
+                    2.1.1 Keyboard: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/keyboard-operation-keyboard-operable.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>All functionality of the content is operable through a keyboard interface.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('2.1.1') }}</span></p>
+                  <template v-if="checkIssue('2.1.1') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('2.1.1')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('2.1.2')">
+                  <h4 id="is212">
+                    2.1.2 No Keyboard Trap: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/keyboard-operation-trapping.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>If keyboard focus can be moved to a component of the page using a keyboard interface, then focus can be moved away from that component using only a keyboard interface.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('2.1.2') }}</span></p>
+                  <template v-if="checkIssue('2.1.2') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('2.1.2')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('2.1.4')">
+                  <h4 id="is214">
+                    2.1.4 Character Key Shortcuts: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/WAI/WCAG21/Understanding/character-key-shortcuts.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>If a keyboard shortcut is implemented in content using only letter (including upper- and lower-case letters), punctuation, number, or symbol characters, then at least one of the following is true: 1) You can turn the shortcut off, 2) You can remap the shortcut, or 3) the shortcut is only active when that component has focus.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('2.1.4') }}</span></p>
+                  <template v-if="checkIssue('2.1.4') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('2.1.4')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <h3>2.2 Enough Time</h3>
+
+                <div class="report-card" :class="checkIssue('2.2.1')">
+                  <h4 id="is221">
+                    2.2.1 Timing Adjustable: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-required-behaviors.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Users have the option to turn off, adjust or extend any time limit set by the content unless it is essential or longer than 20 hours.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('2.2.1') }}</span></p>
+                  <template v-if="checkIssue('2.2.1') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('2.2.1')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('2.2.2')">
+                  <h4 id="is222">
+                    2.2.2 Pause, Stop, Hide: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-pause.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Users have the ability to pause, stop, or hide any content that is auto-updating, moving, blinking or scrolling.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('2.2.2') }}</span></p>
+                  <template v-if="checkIssue('2.2.2') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('2.2.2')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <h3>2.3 Seizures</h3>
+
+                <div class="report-card" :class="checkIssue('2.3.1')">
+                  <h4 id="is231">
+                    2.3.1 Three Flashes or Below Threshold: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/seizure-does-not-violate.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Web pages do not contain anything that flashes more than three times in any one second period.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('2.3.1') }}</span></p>
+                  <template v-if="checkIssue('2.3.1') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('2.3.1')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <h3>2.4 Navigable</h3>
+
+                <div class="report-card" :class="checkIssue('2.4.1')">
+                  <h4 id="is241">
+                    2.4.1 Bypass Blocks: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-skip.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>A mechanism is available to bypass blocks of content that are repeated on multiple Web pages.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('2.4.1') }}</span></p>
+                  <template v-if="checkIssue('2.4.1') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('2.4.1')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('2.4.2')">
+                  <h4 id="is242">
+                    2.4.2 Page Titled: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-title.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Web pages have titles that describe topic or purpose.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('2.4.2') }}</span></p>
+                  <template v-if="checkIssue('2.4.2') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('2.4.2')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('2.4.3')">
+                  <h4 id="is243">
+                    2.4.3 Focus Order: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-focus-order.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Focusable components receive focus in an order that preserves meaning and operability.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('2.4.3') }}</span></p>
+                  <template v-if="checkIssue('2.4.3') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('2.4.3')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('2.4.4')">
+                  <h4 id="is244">
+                    2.4.4 Link Purpose (In Context): (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-refs.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>The purpose of each link can be determined from the link text alone.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('2.4.4') }}</span></p>
+                  <template v-if="checkIssue('2.4.4') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('2.4.4')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('2.4.5')">
+                  <h4 id="is245">
+                    2.4.5 Multiple Ways: (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-mult-loc.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>More than one way is available to locate a Web page within a set of Web pages except where the Web Page is the result of, or a step in, a process.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('2.4.5') }}</span></p>
+                  <template v-if="checkIssue('2.4.5') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('2.4.5')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('2.4.6')">
+                  <h4 id="is246">
+                    2.4.6 Headings and Labels: (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-descriptive.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Headings and labels describe topic or purpose.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('2.4.6') }}</span></p>
+                  <template v-if="checkIssue('2.4.6') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('2.4.6')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('2.4.7')">
+                  <h4 id="is247">
+                    2.4.7 Focus Visible: (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-focus-visible.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Any keyboard operable user interface has a mode of operation where the keyboard focus indicator is visible.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('2.4.7') }}</span></p>
+                  <template v-if="checkIssue('2.4.7') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('2.4.7')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <h3>2.5 Input Modalities</h3>
+
+                <div class="report-card" :class="checkIssue('2.5.1')">
+                  <h4 id="is251">
+                    2.5.1 Pointer Gestures: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/WAI/WCAG21/Understanding/pointer-gestures.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>All functionality that uses multipoint or path-based gestures for operation can be operated with a single pointer without a path-based gesture, unless a multipoint or path-based gesture is essential.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('2.5.1') }}</span></p>
+                  <template v-if="checkIssue('2.5.1') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('2.5.1')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('2.5.2')">
+                  <h4 id="is252">
+                    2.5.2 Pointer Cancellation: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/WAI/WCAG21/Understanding/pointer-cancellation.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>For functionality that can be operated using a single pointer, at least one of the following is true: 1) The down-event is not used to execute any function; 2) The action can be aborted or undone; 3) The up-event reverses the down-event; or 4) Completing the function on the down-event is essential.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('2.5.2') }}</span></p>
+                  <template v-if="checkIssue('2.5.2') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('2.5.2')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('2.5.3')">
+                  <h4 id="is253">
+                    2.5.3 Label in Name: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>For user interface components with labels that include text or images of text, the name contains the text that is presented visually.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('2.5.3') }}</span></p>
+                  <template v-if="checkIssue('2.5.3') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('2.5.3')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('2.5.4')">
+                  <h4 id="is254">
+                    2.5.4 Motion Actuation: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/WAI/WCAG21/Understanding/motion-actuation.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Functionality that can be operated by device motion or user motion can also be operated by user interface components and responding to the motion can be disabled to prevent accidental actuation, except when 1) The motion is used to operate functionality through an accessibility supported interface; or 2) The motion is essential for the function and doing so would invalidate the activity.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('2.5.4') }}</span></p>
+                  <template v-if="checkIssue('2.5.4') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('2.5.4')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <h2>Principle 3: Understandable</h2>
+
+                <h3>3.1 Readable</h3>
+
+                <div class="report-card" :class="checkIssue('3.1.1')">
+                  <h4 id="is311">
+                    3.1.1 Language of Page: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning-doc-lang-id.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>The default human language of each Web page can be programmatically determined.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('3.1.1') }}</span></p>
+                  <template v-if="checkIssue('3.1.1') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('3.1.1')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('3.1.2')">
+                  <h4 id="is312">
+                    3.1.2 Language of Parts: (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/meaning-other-lang-id.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>The default human language of each passage or phrase can be programmatically determined if it differs from the surrounding content.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('3.1.2') }}</span></p>
+                  <template v-if="checkIssue('3.1.2') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('3.1.2')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <h3>3.2 Predictable</h3>
+
+                <div class="report-card" :class="checkIssue('3.2.1')">
+                  <h4 id="is321">
+                    3.2.1 On Focus: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/consistent-behavior-receive-focus.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>When any component receives focus, it does not initiate a change of context.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('3.2.1') }}</span></p>
+                  <template v-if="checkIssue('3.2.1') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('3.2.1')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('3.2.2')">
+                  <h4 id="is322">
+                    3.2.2 On Input: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/consistent-behavior-unpredictable-change.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Changing the setting of any user interface component does not automatically cause a change of context unless the user has been advised of the behavior before using the component.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('3.2.2') }}</span></p>
+                  <template v-if="checkIssue('3.2.2') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('3.2.2')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('3.2.3')">
+                  <h4 id="is323">
+                    3.2.3 Consistent Navigation: (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/consistent-behavior-consistent-locations.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Navigational mechanisms that are repeated on multiple Web pages within a set of Web pages occur in the same relative order each time they are repeated, unless a change is initiated by the user.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('3.2.3') }}</span></p>
+                  <template v-if="checkIssue('3.2.3') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('3.2.3')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('3.2.4')">
+                  <h4 id="is324">
+                    3.2.4 Consistent Identification: (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/consistent-behavior-consistent-functionality.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Components that have the same functionality within a set of Web pages are identified consistently.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('3.2.4') }}</span></p>
+                  <template v-if="checkIssue('3.2.4') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('3.2.4')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <h3>3.3 Input Assistance</h3>
+
+                <div class="report-card" :class="checkIssue('3.3.1')">
+                  <h4 id="is331">
+                    3.3.1 Error Identification: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-identified.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>If an input error is automatically detected, the item that is in error is identified and the error is described to the user in text.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('3.3.1') }}</span></p>
+                  <template v-if="checkIssue('3.3.1') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('3.3.1')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('3.3.2')">
+                  <h4 id="is332">
+                    3.3.2 Labels or Instructions: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-cues.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>Labels or instructions are provided when content requires user input.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('3.3.2') }}</span></p>
+                  <template v-if="checkIssue('3.3.2') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('3.3.2')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('3.3.3')">
+                  <h4 id="is333">
+                    3.3.3 Error Suggestion: (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-suggestions.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>If an input error is automatically detected and suggestions for correction are known, then the suggestions are provided to the user.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('3.3.3') }}</span></p>
+                  <template v-if="checkIssue('3.3.3') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('3.3.3')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('3.3.4')">
+                  <h4 id="is334">
+                    3.3.4 Error Prevention (Legal, Financial, Data): (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/minimize-error-reversible.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>For Web pages that cause legal commitments or financial transactions for the user to occur, that modify or delete user-controllable data in data storage systems, or that submit user test responses, the user must have the option to reverse the submission, check the data for input error or be able to review the information before submission.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('3.3.4') }}</span></p>
+                  <template v-if="checkIssue('3.3.4') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('3.3.4')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <h2>Principle 4: Robust</h2>
+
+                <h3>4.1 Compatible</h3>
+
+                <div class="report-card" :class="checkIssue('4.1.1')">
+                  <h4 id="is411">
+                    4.1.1 Parsing: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-parses.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>In content implemented using markup languages, elements have complete start and end tags, elements are nested according to their specifications, elements do not contain duplicate attributes, and any IDs are unique, except where the specifications allow these features.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('4.1.1') }}</span></p>
+                  <template v-if="checkIssue('4.1.1') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('4.1.1')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('4.1.2')">
+                  <h4 id="is412">
+                    4.1.2 Name, Role, Value: (Level A)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-rsv.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>For all user interface components, the name and role can be programmatically determined.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('4.1.2') }}</span></p>
+                  <template v-if="checkIssue('4.1.2') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('4.1.2')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="report-card" :class="checkIssue('4.1.3')">
+                  <h4 id="is413">
+                    4.1.3 Status Messages: (Level AA)
+                    <div class="more-info">
+                      <a href="https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html" target="_blank" class="icon-info"><span class="visuallyhidden">More information</span></a>
+                    </div>
+                  </h4>
+                  <p>In content implemented using markup languages, status messages can be programmatically determined through role or properties such that they can be presented to the user by assistive technologies without receiving focus.</p>
+
+                  <p><strong>Outcome</strong>: <span style="text-transform: capitalize">{{ checkIssue('4.1.3') }}</span></p>
+                  <template v-if="checkIssue('4.1.3') === 'failed'">
+                    <p><strong>Notes</strong>:</p>
+                    <template v-for="(issue, index) in filterIssue('4.1.3')">
+                      <p class="issue-checkbox">
+                        <input type="checkbox" :id="issue.criteria + index" :checked="issue.completed" />
+                        <label :for="issue.criteria + index">{{ issue.description }} <br /><small>Remediation: {{ issue.tier }}</small></label>
+                      </p>
+                      <small class="issue-notes" v-if="issue.notes || issue.fixLink">
+                        <span v-if="issue.notes">{{ issue.notes }}</span>
+                        <span v-if="issue.fixLink"><a :href="issue.fixLink" target="_blank">Fix Details</a></span>
+                      </small>
+                      <div v-if="issue.pages.length > 0">
+                        <a href="#" class="listToggle"><span class="icon-GizmoPlus"></span> Show Locations</a>
+                        <ul class="locationList">
+                          <li v-for="page in issue.pages"><a :href="page.location" target="_blank">{{ page.location }}</a></li>
+                        </ul>
+                      </div>
+                    </template>
+                  </template>
+                </div>
+
+                <div class="saveState">
+                  <p><strong>Save your progress.</strong> Note: This data is stored locally and will only be available on the computer on which it is saved.</p>
+                  <p><button class="saveStorage">Save Progress</button></p>
+                </div>
+              </div>
+            </section>
+            <section id="design">
+              <div class="card-container">
+                <div class="report-card">
+                  <h2>Color Contrast</h2>
+                  <p>Text should have a color contrast ratio of 4.5:1 for regular text and 3:1 for large-scale text to meet the accessibility criteria.</p>
+
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Example</th>
+                        <th>Foreground</th>
+                        <th>Background</th>
+                        <th>Contrast Ratio</th>
+                        <th>Pass/Fail</th>
+                        <th>Location</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr v-for="color in colorContrast" :class="color.rating">
+                        <td>
+                          <span class="color-block" :style="{'background': color.background, 'color': color.foreground, 'text-align': 'center' }"> Example </span>
+                        </td>
+                        <td>{{ color.foreground }}</td>
+                        <td>{{ color.background }}</td>
+                        <td>{{ color.ratio }}<sup v-if="color.largeText">*</sup></td>
+                        <td style="text-transform: capitalize">{{ color.rating }}</td>
+                        <td>{{ color.location }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <p>
+                    <small><strong>*</strong>: Large text.</small>
+                  </p>
+                  <p>
+                    <small><strong>Note</strong>: Locations are only the primary example of the color combination on the site. Duplicate color contexts may not be listed.</small>
+                  </p>
+                </div>
+              </div>
+            </section>
+          </section>
+        </div>
+      </main>
+
+      <script src="js/colorcontrast.js"></script>
+      <script>
+        var myIssues = [
+        {
+      "description": "An image with a null alt attribute should not have title, aria-label or aria-labelledby attributes.",
+      "level": "A",
+      "criteria": "1.1.1",
+      "tier": "Requires Developer",
+      "completed": true,
+      "quote": 0,
+      "notes": "The logos in the footer need the image description moved from the title to the alt attribute. The logo alt text should be more descriptive as well.",
+      "fixLink": "",
+      "pages": []
+    },
+    {
+      "description": "Document title must not be blank.",
+      "level": "A",
+      "criteria": "2.4.2",
+      "tier": "Document",
+      "completed": false,
+      "quote": 0,
+      "notes": "For Office documents and PDF documents produced from Office, fill in the Title in Document Properties before saving as PDF.",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com/documents/Test-Doc.pdf",
+          "complete": false
+        },
+        {
+          "location": "https://www.notarealsite.com/documents/Annual-Report.pdf",
+          "complete": false
+        },
+        {
+          "location": "https://www.notarealsite.com/documents/policy.pdf",
+          "complete": false
+        },
+        {
+          "location": "https://www.notarealsite.com/documents/fillable-form.pdf",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "description": "Duplicate id - the same ID is used on more than one element.",
+      "level": "A",
+      "criteria": "4.1.1",
+      "tier": "Simple",
+      "completed": true,
+      "quote": 0,
+      "notes": "The footer logos are duplicated in the sidebar and they share the same ID. Recommend either removing the sidebar logos or giving them a unique ID.",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com/who-we-are/",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "description": "Each a element must contain text or an img with an alt attribute.",
+      "level": "A",
+      "criteria": "2.4.4",
+      "tier": "Requires Developer",
+      "completed": false,
+      "quote": 0,
+      "notes": "On all pages, the footer social media links are all missing text readable by assistive technology. An aria-label has been added to the icon but it should be on the link to pass the accessibility check. The locations below have linked images within the content that need alt text.",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com/",
+          "complete": false
+        },
+        {
+          "location": "https://www.notarealsite.com/products/something-fun/",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "description": "Page content contains unclosed formatting elements.",
+      "level": "A",
+      "criteria": "4.1.1",
+      "tier": "Simple",
+      "completed": true,
+      "quote": 0,
+      "notes": "",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com/services",
+          "complete": true
+        },
+        {
+          "location": "https://www.notarealsite.com/contact-us",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "description": "Figures and images in PDF documents should have non blank ALT text, except for decorative images which should be marked as artifacts.",
+      "level": "A",
+      "criteria": "1.1.1",
+      "tier": "Document",
+      "completed": false,
+      "quote": 0,
+      "notes": "",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com/documents/Test-Doc.pdf",
+          "complete": false
+        },
+        {
+          "location": "https://www.notarealsite.com/documents/Annual-Report.pdf",
+          "complete": false
+        },
+        {
+          "location": "https://www.notarealsite.com/documents/policy.pdf",
+          "complete": false
+        },
+        {
+          "location": "https://www.notarealsite.com/documents/fillable-form.pdf",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "description": "No space between attributes.",
+      "level": "A",
+      "criteria": "4.1.1",
+      "tier": "Requires Developer",
+      "completed": false,
+      "quote": 0,
+      "notes": "The footer logos need a space between the data-caption and the srcset attributes.",
+      "fixLink": "",
+      "pages": []
+    },
+    {
+      "description": "PDFs must be tagged to be accessible by screen readers.",
+      "level": "A",
+      "criteria": "1.3.1",
+      "tier": "Document",
+      "completed": false,
+      "quote": 0,
+      "notes": "",
+      "fixLink": "",
+      "pages": []
+    },
+    {
+      "description": "PDFs do not indicate the language of the content",
+      "level": "A",
+      "criteria": "3.1.1",
+      "tier": "Document",
+      "completed": false,
+      "quote": 0,
+      "notes": "In PDFs, set the language using Document Properties in Acrobat. This allows screen readers to pronounce words correctly.",
+      "fixLink": "",
+      "pages": []
+    },
+    {
+      "description": "Google Map element must have a title attribute.",
+      "level": "A",
+      "criteria": "2.4.1",
+      "tier": "Simple",
+      "completed": true,
+      "quote": 0,
+      "notes": "",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com/contact-us/",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "description": "img elements must have an alt attribute.",
+      "level": "A",
+      "criteria": "1.1.1",
+      "tier": "Simple",
+      "completed": true,
+      "quote": 0,
+      "notes": "",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com/who-we-are",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "description": "Form field labels should be unique on a page, or enclosed in a fieldset with a legend that makes the label unique.",
+      "level": "AA",
+      "criteria": "2.4.6",
+      "tier": "Simple",
+      "completed": true,
+      "quote": 0,
+      "notes": "The site search and the sidebar search have the same label so they appear the same to assistive technology.",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com/who-we-are",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "description": "Headings should not be empty.",
+      "level": "AA",
+      "criteria": "2.4.6",
+      "tier": "Simple",
+      "completed": true,
+      "quote": 0,
+      "notes": "",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com",
+          "complete": true
+        },
+        {
+          "location": "https://accessibility.envisionweb.design/contact-us/",
+          "complete": true
+        },
+        {
+          "location": "https://www.notarealsite.com/who-we-are",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "description": "Adjust colors to meet color compliance requirements",
+      "level": "A",
+      "criteria": "1.4.1",
+      "tier": "Requires Developer",
+      "completed": true,
+      "quote": 0,
+      "notes": "See Design Review tab for failing color combinations.",
+      "fixLink": "",
+      "pages": []
+    },
+    {
+      "description": "Provide visual indicator of focus for keyboard-only users",
+      "level": "AA",
+      "criteria": "2.4.7",
+      "tier": "Requires Developer",
+      "completed": true,
+      "quote": 0,
+      "notes": "Hover, focus, and active states have been turned off for most interactive elements like links and buttons. There is no way for a keyboard-only user to tell where they are on a page.",
+      "fixLink": "",
+      "pages": []
+    },
+    {
+      "description": "Unclosed element div.",
+      "level": "A",
+      "criteria": "4.1.1",
+      "tier": "Requires Developer",
+      "completed": false,
+      "quote": 0,
+      "notes": "The report indicates that there is an unclosed div within the footer element.",
+      "fixLink": "",
+      "pages": []
+    }
+        ];
+        var myContrast = [];
+        var compareRatio = 4.5;
+        var contrastValue = calculateRatio("#ffffff", "#ec1c23");
+        myContrast.push({
+          foreground: "#ffffff",
+          background: "#ec1c23",
+          ratio: contrastValue + ":1",
+          largeText: "",
+          rating: contrastValue >= compareRatio ? "pass" : "fail",
+          location: "Alert - Text",
+        });
+        var compareRatio = 4.5;
+        var contrastValue = calculateRatio("#000000", "#ec1c23");
+        myContrast.push({
+          foreground: "#000000",
+          background: "#ec1c23",
+          ratio: contrastValue + ":1",
+          largeText: "",
+          rating: contrastValue >= compareRatio ? "pass" : "fail",
+          location: "Alert - Link",
+        });
+        var compareRatio = 4.5;
+        var contrastValue = calculateRatio("#333333", "#ffffff");
+        myContrast.push({
+          foreground: "#333333",
+          background: "#ffffff",
+          ratio: contrastValue + ":1",
+          largeText: "",
+          rating: contrastValue >= compareRatio ? "pass" : "fail",
+          location: "Main - Text",
+        });
+        var compareRatio = 4.5;
+        var contrastValue = calculateRatio("#000000", "#ffffff");
+        myContrast.push({
+          foreground: "#000000",
+          background: "#ffffff",
+          ratio: contrastValue + ":1",
+          largeText: "",
+          rating: contrastValue >= compareRatio ? "pass" : "fail",
+          location: "Main - Bold Text",
+        });
+        var compareRatio = 3;
+        var contrastValue = calculateRatio("#ec1c23", "#ffffff");
+        myContrast.push({
+          foreground: "#ec1c23",
+          background: "#ffffff",
+          ratio: contrastValue + ":1",
+          largeText: "1",
+          rating: contrastValue >= compareRatio ? "pass" : "fail",
+          location: "Main - Headers",
+        });
+        var compareRatio = 4.5;
+        var contrastValue = calculateRatio("#5b5b5b", "#ffffff");
+        myContrast.push({
+          foreground: "#5b5b5b",
+          background: "#ffffff",
+          ratio: contrastValue + ":1",
+          largeText: "",
+          rating: contrastValue >= compareRatio ? "pass" : "fail",
+          location: "Main - Feature Text",
+        });
+        var compareRatio = 4.5;
+        var contrastValue = calculateRatio("#ffffff", "#7085a0");
+        myContrast.push({
+          foreground: "#ffffff",
+          background: "#7085a0",
+          ratio: contrastValue + ":1",
+          largeText: "",
+          rating: contrastValue >= compareRatio ? "pass" : "fail",
+          location: "Home - Text over image - Light",
+        });
+        var compareRatio = 4.5;
+        var contrastValue = calculateRatio("#ffffff", "#0e1213");
+        myContrast.push({
+          foreground: "#ffffff",
+          background: "#0e1213",
+          ratio: contrastValue + ":1",
+          largeText: "",
+          rating: contrastValue >= compareRatio ? "pass" : "fail",
+          location: "Home - Text over image - Dark",
+        });
+        var compareRatio = 4.5;
+        var contrastValue = calculateRatio("#ff3333", "#ffffff");
+        myContrast.push({
+          foreground: "#ff3333",
+          background: "#ffffff",
+          ratio: contrastValue + ":1",
+          largeText: "",
+          rating: contrastValue >= compareRatio ? "pass" : "fail",
+          location: "Footer - Link",
+        });
+        var compareRatio = 4.5;
+        var contrastValue = calculateRatio("#3a1111", "#ffffff");
+        myContrast.push({
+          foreground: "#3a1111",
+          background: "#ffffff",
+          ratio: contrastValue + ":1",
+          largeText: "",
+          rating: contrastValue >= compareRatio ? "pass" : "fail",
+          location: "Footer - Hovered Link",
+        });
+        var myQuotes = {
+          individualItemQuotes: "false",
+          totalByTier: "false",
+          overallTotal: "false",
+        };
+      </script>
+      <script src="js/app.js" async></script>
+      <script src="js/main.js" async></script>
+
+    </div>
+
+    <script src="js/darkmode.js"></script>
+  </body>
+</html>

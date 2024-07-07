@@ -1,0 +1,340 @@
+{
+  "report": "Sample Website",
+  "dateOfReview": "July 2024",
+  "myIssues": [
+    {
+      "description": "An image with a null alt attribute should not have title, aria-label or aria-labelledby attributes.",
+      "level": "A",
+      "criteria": "1.1.1",
+      "tier": "Requires Developer",
+      "completed": true,
+      "quote": 0,
+      "notes": "The logos in the footer need the image description moved from the title to the alt attribute. The logo alt text should be more descriptive as well.",
+      "fixLink": "",
+      "pages": []
+    },
+    {
+      "description": "Document title must not be blank.",
+      "level": "A",
+      "criteria": "2.4.2",
+      "tier": "Document",
+      "completed": false,
+      "quote": 0,
+      "notes": "For Office documents and PDF documents produced from Office, fill in the Title in Document Properties before saving as PDF.",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com/documents/Test-Doc.pdf",
+          "complete": false
+        },
+        {
+          "location": "https://www.notarealsite.com/documents/Annual-Report.pdf",
+          "complete": false
+        },
+        {
+          "location": "https://www.notarealsite.com/documents/policy.pdf",
+          "complete": false
+        },
+        {
+          "location": "https://www.notarealsite.com/documents/fillable-form.pdf",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "description": "Duplicate id - the same ID is used on more than one element.",
+      "level": "A",
+      "criteria": "4.1.1",
+      "tier": "Simple",
+      "completed": true,
+      "quote": 0,
+      "notes": "The footer logos are duplicated in the sidebar and they share the same ID. Recommend either removing the sidebar logos or giving them a unique ID.",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com/who-we-are/",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "description": "Each a element must contain text or an img with an alt attribute.",
+      "level": "A",
+      "criteria": "2.4.4",
+      "tier": "Requires Developer",
+      "completed": false,
+      "quote": 0,
+      "notes": "On all pages, the footer social media links are all missing text readable by assistive technology. An aria-label has been added to the icon but it should be on the link to pass the accessibility check. The locations below have linked images within the content that need alt text.",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com/",
+          "complete": false
+        },
+        {
+          "location": "https://www.notarealsite.com/products/something-fun/",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "description": "Page content contains unclosed formatting elements.",
+      "level": "A",
+      "criteria": "4.1.1",
+      "tier": "Simple",
+      "completed": true,
+      "quote": 0,
+      "notes": "",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com/services",
+          "complete": true
+        },
+        {
+          "location": "https://www.notarealsite.com/contact-us",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "description": "Figures and images in PDF documents should have non blank ALT text, except for decorative images which should be marked as artifacts.",
+      "level": "A",
+      "criteria": "1.1.1",
+      "tier": "Document",
+      "completed": false,
+      "quote": 0,
+      "notes": "",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com/documents/Test-Doc.pdf",
+          "complete": false
+        },
+        {
+          "location": "https://www.notarealsite.com/documents/Annual-Report.pdf",
+          "complete": false
+        },
+        {
+          "location": "https://www.notarealsite.com/documents/policy.pdf",
+          "complete": false
+        },
+        {
+          "location": "https://www.notarealsite.com/documents/fillable-form.pdf",
+          "complete": false
+        }
+      ]
+    },
+    {
+      "description": "No space between attributes.",
+      "level": "A",
+      "criteria": "4.1.1",
+      "tier": "Requires Developer",
+      "completed": false,
+      "quote": 0,
+      "notes": "The footer logos need a space between the data-caption and the srcset attributes.",
+      "fixLink": "",
+      "pages": []
+    },
+    {
+      "description": "PDFs must be tagged to be accessible by screen readers.",
+      "level": "A",
+      "criteria": "1.3.1",
+      "tier": "Document",
+      "completed": false,
+      "quote": 0,
+      "notes": "",
+      "fixLink": "",
+      "pages": []
+    },
+    {
+      "description": "PDFs do not indicate the language of the content",
+      "level": "A",
+      "criteria": "3.1.1",
+      "tier": "Document",
+      "completed": false,
+      "quote": 0,
+      "notes": "In PDFs, set the language using Document Properties in Acrobat. This allows screen readers to pronounce words correctly.",
+      "fixLink": "",
+      "pages": []
+    },
+    {
+      "description": "Google Map element must have a title attribute.",
+      "level": "A",
+      "criteria": "2.4.1",
+      "tier": "Simple",
+      "completed": true,
+      "quote": 0,
+      "notes": "",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com/contact-us/",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "description": "img elements must have an alt attribute.",
+      "level": "A",
+      "criteria": "1.1.1",
+      "tier": "Simple",
+      "completed": true,
+      "quote": 0,
+      "notes": "",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com/who-we-are",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "description": "Form field labels should be unique on a page, or enclosed in a fieldset with a legend that makes the label unique.",
+      "level": "AA",
+      "criteria": "2.4.6",
+      "tier": "Simple",
+      "completed": true,
+      "quote": 0,
+      "notes": "The site search and the sidebar search have the same label so they appear the same to assistive technology.",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com/who-we-are",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "description": "Headings should not be empty.",
+      "level": "AA",
+      "criteria": "2.4.6",
+      "tier": "Simple",
+      "completed": true,
+      "quote": 0,
+      "notes": "",
+      "fixLink": "",
+      "pages": [
+        {
+          "location": "https://www.notarealsite.com",
+          "complete": true
+        },
+        {
+          "location": "https://accessibility.envisionweb.design/contact-us/",
+          "complete": true
+        },
+        {
+          "location": "https://www.notarealsite.com/who-we-are",
+          "complete": true
+        }
+      ]
+    },
+    {
+      "description": "Adjust colors to meet color compliance requirements",
+      "level": "A",
+      "criteria": "1.4.1",
+      "tier": "Requires Developer",
+      "completed": true,
+      "quote": 0,
+      "notes": "See Design Review tab for failing color combinations.",
+      "fixLink": "",
+      "pages": []
+    },
+    {
+      "description": "Provide visual indicator of focus for keyboard-only users",
+      "level": "AA",
+      "criteria": "2.4.7",
+      "tier": "Requires Developer",
+      "completed": true,
+      "quote": 0,
+      "notes": "Hover, focus, and active states have been turned off for most interactive elements like links and buttons. There is no way for a keyboard-only user to tell where they are on a page.",
+      "fixLink": "",
+      "pages": []
+    },
+    {
+      "description": "Unclosed element div.",
+      "level": "A",
+      "criteria": "4.1.1",
+      "tier": "Requires Developer",
+      "completed": false,
+      "quote": 0,
+      "notes": "The report indicates that there is an unclosed div within the footer element.",
+      "fixLink": "",
+      "pages": []
+    }
+  ],
+  "myContrast": [
+    {
+      "foreground": "#ffffff",
+      "background": "#ec1c23",
+      "ratio": "4.5:1",
+      "ratio": "4.5:1",
+      "largeText": "",
+      "rating": "",
+      "rating": "",
+      "location": "Alert - Text"
+    },
+    {
+      "foreground": "#000000",
+      "background": "#ec1c23",
+      "ratio": "4.5:1",
+      "largeText": "",
+      "rating": "",
+      "location": "Alert - Link - Default"
+    },
+    {
+      "foreground": "#333333",
+      "background": "#ec1c23",
+      "ratio": "4.5:1",
+      "largeText": "",
+      "rating": "",
+      "location": "Alert - Link - Active"
+    },
+    {
+      "foreground": "#333333",
+      "background": "#ffffff",
+      "ratio": "4.5:1",
+      "largeText": "",
+      "rating": "",
+      "location": "Main - Text"
+    },
+    {
+      "foreground": "#000000",
+      "background": "#ffffff",
+      "ratio": "4.5:1",
+      "largeText": "",
+      "rating": "",
+      "location": "Main - Bold Text"
+    },
+    {
+      "foreground": "#ec1c23",
+      "background": "#ffffff",
+      "ratio": "4.5:1",
+      "largeText": "1",
+      "rating": "",
+      "location": "Main - Headers"
+    },
+    {
+      "foreground": "#ec1c23",
+      "background": "#ffffff",
+      "ratio": "4.5:1",
+      "largeText": "1",
+      "rating": "",
+      "location": "Main - Headers"
+    },
+    {
+      "foreground": "#5b5b5b",
+      "background": "#ffffff",
+      "ratio": "4.5:1",
+      "largeText": "",
+      "rating": "",
+      "location": "Main - Feature Text"
+    }
+  ],
+  "myQuotes": {
+    "individualItemQuotes": "false",
+    "totalByTier": "false",
+    "overallTotal": "false"
+  }
+}
