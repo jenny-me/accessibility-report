@@ -112,15 +112,27 @@ new Vue({
       fetch(dataPath)
           .then(res => res.json())
           .then(json => {
-            // console.log(json);
             this.issues = json.myIssues;
             this.colorContrast = json.myContrast;
             this.showQuotes = json.myQuotes;
+
+            this.processContrast();
             return json;
         });
     },
     changeState: function(state) {
       this.state = state;
+    },
+    processContrast: function() {
+      for(var i =0; i < this.colorContrast.length; i++) {
+        let compareRatio = 4.5;
+        let contrastValue = this.calculateRatio(this.colorContrast[i].foreground, this.colorContrast[i].background);
+        if(this.colorContrast[i].largeText === "1") {
+          compareRatio = 3;
+        }
+        this.colorContrast[i].ratio = contrastValue + ":1";
+        this.colorContrast[i].rating = contrastValue >= compareRatio ? "pass" : "fail";
+      }
     },
     checkIssue: function(criteria) {
       var passFail;
@@ -251,6 +263,45 @@ new Vue({
   
       score = max - numIssues;
       return score + ' of ' + max;
+    },
+    hexToRgb: function(hex) {
+      // function from https://stackoverflow.com/a/5624139/3695983
+      var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+      hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+        return r + r + g + g + b + b;
+      });
+    
+      var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      } : null;
+    },
+    luminance: function(r, g, b) {
+      // function from https://stackoverflow.com/a/9733420/3695983  
+      var a = [r, g, b].map(function (v) {
+        v /= 255;
+        return v <= 0.03928
+          ? v / 12.92
+        : Math.pow( (v + 0.055) / 1.055, 2.4 );
+      });
+      return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+    },
+    calculateRatio: function(color1, color2) {
+      const color1rgb = this.hexToRgb(color1);
+      const color2rgb = this.hexToRgb(color2);
+    
+      // calculate the relative luminance
+      const color1luminance = this.luminance(color1rgb.r, color1rgb.g, color1rgb.b);
+      const color2luminance = this.luminance(color2rgb.r, color2rgb.g, color2rgb.b);
+    
+      let brightest = Math.max(color1luminance, color2luminance);
+      let darkest = Math.min(color1luminance, color2luminance);
+      const ratio = (brightest + 0.05) / (darkest + 0.05);
+      const roundedRatio = Math.round(ratio * 10) / 10
+    
+      return roundedRatio;
     }
   }
 });

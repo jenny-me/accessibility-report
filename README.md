@@ -9,8 +9,8 @@ The report was built using Vue.js v2 and had pulled all of the WCAG and report c
 
 ## Roadmap
 
-[] Move color contrast check into main app  
-[] Reduce hard-coded information pulling it out into JSON files  
+[x] Move color contrast check into main app  
+[x] Reduce hard-coded information pulling it out into JSON files  
 [] Update report to Vue 3  
 [] Design updates (especially on dark mode)  
 [] Add severity information to issues  

@@ -269,9 +269,7 @@
       "foreground": "#ffffff",
       "background": "#ec1c23",
       "ratio": "4.5:1",
-      "ratio": "4.5:1",
       "largeText": "",
-      "rating": "",
       "rating": "",
       "location": "Alert - Text"
     },
@@ -306,14 +304,6 @@
       "largeText": "",
       "rating": "",
       "location": "Main - Bold Text"
-    },
-    {
-      "foreground": "#ec1c23",
-      "background": "#ffffff",
-      "ratio": "4.5:1",
-      "largeText": "1",
-      "rating": "",
-      "location": "Main - Headers"
     },
     {
       "foreground": "#ec1c23",
