@@ -9,25 +9,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet" />
-    <link rel="stylesheet" href="stylesheets/screen.css" />
+    <!-- <link rel="stylesheet" href="stylesheets/screen.css" /> -->
+    <link rel="stylesheet" href="css/style.css" />
     <script src="js/vue.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
       document.documentElement.className = document.documentElement.className.replace("no-js", "js");
     </script>
   </head>
-  <body>
+  <body class="dark:bg-slate-800">
     <div id="wrapper">
-      <header class="mast" role="banner">
+      <header class="hidden py-2 bg-slate-100 dark:bg-slate-800 border-b-2 border-b-slate-300 dark:border-b-slate-50" role="banner">
         <div class="container">
-          <button class="mode-toggle"><span class="visuallyhidden">Dark Mode</span></button>
+          <button class="mode-toggle bg-transparent border border-slate-700 relative rounded-full dark:border-slate-300 m-0"><span class="block w-1/2 bg-slate-700 dark:bg-slate-300 rounded-full absolute top-0 bottom-0 left-0 dark:left-auto dark:right-0"></span><span class="visuallyhidden sr-only">Dark Mode</span></button>
         </div>
       </header>
 
-      <div class="section-top">
-        <div class="container">
-          <p>Sample Site</p>
-          <h1>Accessibility Report</h1>
+      <div class="section-top bg-slate-100 dark:bg-slate-800">
+        <div class="container pt-4 pb-8">
+          <p class="uppercase text-xs leading-2 font-light">Accessibility Report</p>
+          <h1>Sample Site</h1>
         </div>
       </div>
 
@@ -40,9 +41,9 @@
             </div>
           </section>
           <section id="dashboard">
-            <div class="section-subnav">
+            <div class="section-subnav bg-slate-100 dark:bg-slate-800 border-b-2 border-b-slate-300 py-1 text-sm">
               <div class="container">
-                <ul>
+                <ul class="flex flex-row justify-start items-center space-x-3">
                   <li><a href="#overview">Overview</a></li>
                   <li><a href="#results">Results</a></li>
                   <li><a href="#design">Design Review</a></li>
@@ -84,105 +85,109 @@
                   <h2>Report Overview</h2>
                   <p>WCAG guidelines are divided into four principles, briefly describing the goal of the guidelines. The guidelines are further divided into three levels that indicate the priority of conformance. Level A is the highest priority and Level AAA is lowest priority. This report targets the mid-range Level AA conformance.</p>
                   <p>Below is a scorecard of how many guidelines have passed for each principle.</p>
-                  <h3>Reported Scorecard</h3>
+                  <div class="flex flex-col md:flex-row w-full">
+                    <div class="flex-1">
+                      <h3>Reported Scorecard</h3>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Principle</th>
+                            <th>Level A</th>
+                            <th>Level AA</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>1. Perceivable</th>
+                            <td>{{ getAScore('1') }}</td>
+                            <td>{{ getAAScore('1') }}</td>
+                          </tr>
+                          <tr>
+                            <th>2. Operable</th>
+                            <td>{{ getAScore('2') }}</td>
+                            <td>{{ getAAScore('2') }}</td>
+                          </tr>
+                          <tr>
+                            <th>3. Understandable</th>
+                            <td>{{ getAScore('3') }}</td>
+                            <td>{{ getAAScore('3') }}</td>
+                          </tr>
+                          <tr>
+                            <th>4. Robust</th>
+                            <td>{{ getAScore('4') }}</td>
+                            <td>{{ getAAScore('4') }}</td>
+                          </tr>
+                          <tr class="total">
+                            <th>Total</th>
+                            <td>{{ getAScore('5') }}</td>
+                            <td>{{ getAAScore('5') }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                      <div class="flex-1">
+                      <h3>Scorecard After Fixes</h3>
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Principle</th>
+                            <th>Level A</th>
+                            <th>Level AA</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>1. Perceivable</th>
+                            <td>{{ getNewAScore('1') }}</td>
+                            <td>{{ getNewAAScore('1') }}</td>
+                          </tr>
+                          <tr>
+                            <th>2. Operable</th>
+                            <td>{{ getNewAScore('2') }}</td>
+                            <td>{{ getNewAAScore('2') }}</td>
+                          </tr>
+                          <tr>
+                            <th>3. Understandable</th>
+                            <td>{{ getNewAScore('3') }}</td>
+                            <td>{{ getNewAAScore('3') }}</td>
+                          </tr>
+                          <tr>
+                            <th>4. Robust</th>
+                            <td>{{ getNewAScore('4') }}</td>
+                            <td>{{ getNewAAScore('4') }}</td>
+                          </tr>
+                          <tr class="total">
+                            <th>Total</th>
+                            <td>{{ getNewAScore('5') }}</td>
+                            <td>{{ getNewAAScore('5') }}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
 
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Principle</th>
-                        <th>Level A</th>
-                        <th>Level AA</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th>1. Perceivable</th>
-                        <td>{{ getAScore('1') }}</td>
-                        <td>{{ getAAScore('1') }}</td>
-                      </tr>
-                      <tr>
-                        <th>2. Operable</th>
-                        <td>{{ getAScore('2') }}</td>
-                        <td>{{ getAAScore('2') }}</td>
-                      </tr>
-                      <tr>
-                        <th>3. Understandable</th>
-                        <td>{{ getAScore('3') }}</td>
-                        <td>{{ getAAScore('3') }}</td>
-                      </tr>
-                      <tr>
-                        <th>4. Robust</th>
-                        <td>{{ getAScore('4') }}</td>
-                        <td>{{ getAAScore('4') }}</td>
-                      </tr>
-                      <tr class="total">
-                        <th>Total</th>
-                        <td>{{ getAScore('5') }}</td>
-                        <td>{{ getAAScore('5') }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-
-                  <h3>Scorecard After Fixes</h3>
-
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th>Principle</th>
-                        <th>Level A</th>
-                        <th>Level AA</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th>1. Perceivable</th>
-                        <td>{{ getNewAScore('1') }}</td>
-                        <td>{{ getNewAAScore('1') }}</td>
-                      </tr>
-                      <tr>
-                        <th>2. Operable</th>
-                        <td>{{ getNewAScore('2') }}</td>
-                        <td>{{ getNewAAScore('2') }}</td>
-                      </tr>
-                      <tr>
-                        <th>3. Understandable</th>
-                        <td>{{ getNewAScore('3') }}</td>
-                        <td>{{ getNewAAScore('3') }}</td>
-                      </tr>
-                      <tr>
-                        <th>4. Robust</th>
-                        <td>{{ getNewAScore('4') }}</td>
-                        <td>{{ getNewAAScore('4') }}</td>
-                      </tr>
-                      <tr class="total">
-                        <th>Total</th>
-                        <td>{{ getNewAScore('5') }}</td>
-                        <td>{{ getNewAAScore('5') }}</td>
-                      </tr>
-                    </tbody>
-                  </table>
                 </div>
 
                 <div class="report-card">
                   <h2>Issues</h2>
 
-                  <div class="tier-list" v-for="item in generalTiers">
+                  <div class="tier-list my-6" v-for="item in generalTiers">
                     <h3>{{ item.tier }}</h3>
                     <p>{{ item.description }}</p>
-                    <ul>
-                      <li v-for="issue in filterTier(item.tier)">
-                        <span class="criteria">{{ issue.criteria }}</span>
-                        <span class="description">{{ issue.description }}</span>
+                    <ul class="my-3 flex flex-col divide-y-2 divide-gray-300">
+                      <li class="flex flex-row p-2 space-x-2" v-for="issue in filterTier(item.tier)">
+                        <span class="criteria font-semibold">{{ issue.criteria }}</span>
+                        <span class="description flex-1">{{ issue.description }}</span>
                         <span class="quote" v-if="showQuotes.individualItemQuotes === 'true'">{{ issue.quote }} hour(s)</span>
                         <span class="completed">
-                          <img src="images/checkbox-checked.svg" alt="Complete" v-if="issue.completed" />
-                          <img src="images/checkbox-unchecked.svg" alt="Incomplete" v-else />
+                          <img src="images/checkbox-checked.svg" alt="Complete" class="w-6" v-if="issue.completed" />
+                          <img src="images/checkbox-unchecked.svg" alt="Incomplete" class="w-6" v-else />
                         </span>
                         <span class="details"
-                          ><a :href="'#results?issue=is' + issue.criteria.split('.').join('')"><img src="images/icon-info.svg" alt="Details" /></a
+                          ><a :href="'#results?issue=is' + issue.criteria.split('.').join('')"><img src="images/icon-info.svg" class="w-6" alt="Details" /></a
                         ></span>
                       </li>
-                      <li v-if="filterTier(item.tier).length === 0">There are no issues at this level.</li>
+                      <li class="text-sm italic" v-if="filterTier(item.tier).length === 0">There are no issues at this level.</li>
                     </ul>
                     <p v-if="showQuotes.totalByTier === 'true'"><strong>Total Time for Fixes</strong>: {{ getTierTotal(item.tier) }} hour(s)</p>
                   </div>
@@ -190,14 +195,12 @@
               </div>
             </section>
             <section id="results">
-              <div class="card-container">
-                <div id="filter-set">
-                  <button id="showFail">Show Failed</button>
-                  <button id="showPass">Show Passed</button>
-                  <button id="showAll">Show All</button>
+              <div class="card-container mb-24">
+                <div id="filter-set" class="flex justify-center items-center pt-6 space-x-1">
+                  <button id="showFail" class="rounded-l-full m-0">Show Failed</button>
+                  <button id="showPass" class="rounded-none m-0">Show Passed</button>
+                  <button id="showAll" class="rounded-r-full m-0">Show All</button>
                 </div>
-                <h2>Principle 1: Perceivable</h2>
-                <h3>1.1 Text Alternative</h3>
                 <div class="report-card" :class="checkIssue('1.1.1')">
                   <h4 id="is111">
                     1.1.1 Non-text Content: (Level A)
@@ -228,7 +231,6 @@
                     </template>
                   </template>
                 </div>
-                <h3>1.2 Time-based Media</h3>
                 <div class="report-card" :class="checkIssue('1.2.1')">
                   <h4 id="is121">
                     1.2.1 Audio-only and Video-only (Prerecorded): (Level A)
@@ -349,7 +351,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('1.2.5')">
                   <h4 id="is125">
                     1.2.5 Audio Description (Prerecorded): (Level AA)
@@ -380,9 +381,6 @@
                     </template>
                   </template>
                 </div>
-
-                <h3>1.3 Adaptable</h3>
-
                 <div class="report-card" :class="checkIssue('1.3.1')">
                   <h4 id="is131">
                     1.3.1 Info and Relationships: (Level A)
@@ -413,7 +411,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('1.3.2')">
                   <h4 id="is132">
                     1.3.2 Meaningful Sequence: (Level A)
@@ -444,7 +441,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('1.3.3')">
                   <h4 id="is133">
                     1.3.3 Sensory Characteristics: (Level A)
@@ -475,7 +471,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('1.3.4')">
                   <h4 id="is134">
                     1.3.4 Orientation: (Level AA)
@@ -506,7 +501,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('1.3.5')">
                   <h4 id="is135">
                     1.3.5 Identify Input Purpose: (Level AA)
@@ -537,9 +531,6 @@
                     </template>
                   </template>
                 </div>
-
-                <h3>1.4 Distinguishable</h3>
-
                 <div class="report-card" :class="checkIssue('1.4.1')">
                   <h4 id="is141">
                     1.4.1 Use of Color: (Level A)
@@ -570,7 +561,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('1.4.2')">
                   <h4 id="is142">
                     1.4.2 Audio Control: (Level A)
@@ -601,7 +591,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('1.4.3')">
                   <h4 id="is143">
                     1.4.3 Contrast (Minimum): (Level AA)
@@ -632,7 +621,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('1.4.4')">
                   <h4 id="is144">
                     1.4.4 Resize text: (Level AA)
@@ -663,7 +651,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('1.4.5')">
                   <h4 id="is145">
                     1.4.5 Images of Text: (Level AA)
@@ -694,7 +681,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('1.4.10')">
                   <h4 id="is1410">
                     1.4.10 Reflow: (Level AA)
@@ -725,7 +711,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('1.4.11')">
                   <h4 id="is1411">
                     1.4.11 Non-text Contrast: (Level AA)
@@ -756,7 +741,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('1.4.12')">
                   <h4 id="is1412">
                     1.4.12 Text Spacing: (Level AA)
@@ -787,7 +771,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('1.4.13')">
                   <h4 id="is1413">
                     1.4.13 Content on Hover or Focus: (Level AA)
@@ -818,11 +801,6 @@
                     </template>
                   </template>
                 </div>
-
-                <h2>Principle 2: Operable</h2>
-
-                <h3>2.1 Keyboard Accessible</h3>
-
                 <div class="report-card" :class="checkIssue('2.1.1')">
                   <h4 id="is211">
                     2.1.1 Keyboard: (Level A)
@@ -853,7 +831,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('2.1.2')">
                   <h4 id="is212">
                     2.1.2 No Keyboard Trap: (Level A)
@@ -884,7 +861,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('2.1.4')">
                   <h4 id="is214">
                     2.1.4 Character Key Shortcuts: (Level A)
@@ -915,9 +891,6 @@
                     </template>
                   </template>
                 </div>
-
-                <h3>2.2 Enough Time</h3>
-
                 <div class="report-card" :class="checkIssue('2.2.1')">
                   <h4 id="is221">
                     2.2.1 Timing Adjustable: (Level A)
@@ -948,7 +921,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('2.2.2')">
                   <h4 id="is222">
                     2.2.2 Pause, Stop, Hide: (Level A)
@@ -979,9 +951,6 @@
                     </template>
                   </template>
                 </div>
-
-                <h3>2.3 Seizures</h3>
-
                 <div class="report-card" :class="checkIssue('2.3.1')">
                   <h4 id="is231">
                     2.3.1 Three Flashes or Below Threshold: (Level A)
@@ -1012,9 +981,6 @@
                     </template>
                   </template>
                 </div>
-
-                <h3>2.4 Navigable</h3>
-
                 <div class="report-card" :class="checkIssue('2.4.1')">
                   <h4 id="is241">
                     2.4.1 Bypass Blocks: (Level A)
@@ -1045,7 +1011,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('2.4.2')">
                   <h4 id="is242">
                     2.4.2 Page Titled: (Level A)
@@ -1076,7 +1041,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('2.4.3')">
                   <h4 id="is243">
                     2.4.3 Focus Order: (Level A)
@@ -1107,7 +1071,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('2.4.4')">
                   <h4 id="is244">
                     2.4.4 Link Purpose (In Context): (Level A)
@@ -1138,7 +1101,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('2.4.5')">
                   <h4 id="is245">
                     2.4.5 Multiple Ways: (Level AA)
@@ -1169,7 +1131,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('2.4.6')">
                   <h4 id="is246">
                     2.4.6 Headings and Labels: (Level AA)
@@ -1200,7 +1161,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('2.4.7')">
                   <h4 id="is247">
                     2.4.7 Focus Visible: (Level AA)
@@ -1231,9 +1191,6 @@
                     </template>
                   </template>
                 </div>
-
-                <h3>2.5 Input Modalities</h3>
-
                 <div class="report-card" :class="checkIssue('2.5.1')">
                   <h4 id="is251">
                     2.5.1 Pointer Gestures: (Level A)
@@ -1264,7 +1221,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('2.5.2')">
                   <h4 id="is252">
                     2.5.2 Pointer Cancellation: (Level A)
@@ -1295,7 +1251,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('2.5.3')">
                   <h4 id="is253">
                     2.5.3 Label in Name: (Level A)
@@ -1326,7 +1281,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('2.5.4')">
                   <h4 id="is254">
                     2.5.4 Motion Actuation: (Level A)
@@ -1357,11 +1311,6 @@
                     </template>
                   </template>
                 </div>
-
-                <h2>Principle 3: Understandable</h2>
-
-                <h3>3.1 Readable</h3>
-
                 <div class="report-card" :class="checkIssue('3.1.1')">
                   <h4 id="is311">
                     3.1.1 Language of Page: (Level A)
@@ -1392,7 +1341,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('3.1.2')">
                   <h4 id="is312">
                     3.1.2 Language of Parts: (Level AA)
@@ -1423,9 +1371,6 @@
                     </template>
                   </template>
                 </div>
-
-                <h3>3.2 Predictable</h3>
-
                 <div class="report-card" :class="checkIssue('3.2.1')">
                   <h4 id="is321">
                     3.2.1 On Focus: (Level A)
@@ -1456,7 +1401,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('3.2.2')">
                   <h4 id="is322">
                     3.2.2 On Input: (Level A)
@@ -1487,7 +1431,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('3.2.3')">
                   <h4 id="is323">
                     3.2.3 Consistent Navigation: (Level AA)
@@ -1518,7 +1461,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('3.2.4')">
                   <h4 id="is324">
                     3.2.4 Consistent Identification: (Level AA)
@@ -1549,9 +1491,6 @@
                     </template>
                   </template>
                 </div>
-
-                <h3>3.3 Input Assistance</h3>
-
                 <div class="report-card" :class="checkIssue('3.3.1')">
                   <h4 id="is331">
                     3.3.1 Error Identification: (Level A)
@@ -1582,7 +1521,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('3.3.2')">
                   <h4 id="is332">
                     3.3.2 Labels or Instructions: (Level A)
@@ -1613,7 +1551,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('3.3.3')">
                   <h4 id="is333">
                     3.3.3 Error Suggestion: (Level AA)
@@ -1644,7 +1581,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('3.3.4')">
                   <h4 id="is334">
                     3.3.4 Error Prevention (Legal, Financial, Data): (Level AA)
@@ -1675,11 +1611,6 @@
                     </template>
                   </template>
                 </div>
-
-                <h2>Principle 4: Robust</h2>
-
-                <h3>4.1 Compatible</h3>
-
                 <div class="report-card" :class="checkIssue('4.1.1')">
                   <h4 id="is411">
                     4.1.1 Parsing: (Level A)
@@ -1710,7 +1641,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('4.1.2')">
                   <h4 id="is412">
                     4.1.2 Name, Role, Value: (Level A)
@@ -1741,7 +1671,6 @@
                     </template>
                   </template>
                 </div>
-
                 <div class="report-card" :class="checkIssue('4.1.3')">
                   <h4 id="is413">
                     4.1.3 Status Messages: (Level AA)
@@ -1773,9 +1702,9 @@
                   </template>
                 </div>
 
-                <div class="saveState">
-                  <p><strong>Save your progress.</strong> Note: This data is stored locally and will only be available on the computer on which it is saved.</p>
-                  <p><button class="saveStorage">Save Progress</button></p>
+                <div class="relative md:fixed md:bottom-0 md:left-0 md:right-0 w-full border-t-2 border-t-teal-700 bg-slate-200 flex flex-col md:flex-row justify-center items-center gap-6 py-1">
+                  <p class="max-w-screen-lg text-sm"><strong>Save your progress.</strong> Note: This data is stored locally and will only be available on the computer on which it is saved.</p>
+                  <p><button class="saveStorage text-sm py-2 px-4">Save Progress</button></p>
                 </div>
               </div>
             </section>
@@ -1799,7 +1728,7 @@
                     <tbody>
                       <tr v-for="color in colorContrast" :class="color.rating">
                         <td>
-                          <span class="color-block" :style="{'background': color.background, 'color': color.foreground, 'text-align': 'center' }"> Example </span>
+                          <span class="border border-gray-800 p-2 uppercase block text-sm" :style="{'background': color.background, 'color': color.foreground, 'text-align': 'center' }"> Example </span>
                         </td>
                         <td>{{ color.foreground }}</td>
                         <td>{{ color.background }}</td>

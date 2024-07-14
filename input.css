@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-4xl font-bold font-serif text-teal-700;
+  }
+  h2 {
+    @apply text-2xl font-semibold font-sans;
+  }
+  h3 {
+    @apply text-xl font-semibold font-sans;
+  }
+  h4 {
+    @apply text-lg font-semibold font-sans;
+  }
+  p {
+    @apply my-4;
+  }
+  button {
+    @apply border border-teal-800 bg-teal-800 rounded-md text-white px-6 py-3 uppercase;
+  }
+  button.active {
+    @apply opacity-85;
+  }
+}
+@layer components {
+  .container {
+    @apply w-11/12 mx-auto;
+  }
+  .report-card {
+    @apply border border-gray-400 border-t-8 border-t-teal-600 w-11/12 rounded-xl p-6 my-6 mx-auto max-w-screen-xl;
+  }
+  .table {
+    @apply my-4;
+  }
+  .table tr {
+    @apply text-left border-b border-b-gray-300;
+  }
+  .table tr.total {
+    @apply font-bold border-t-4 border-black;
+  }
+  .table td, .table th {
+    @apply px-4 py-1;
+  }
+
+  .js .js-warning { 
+    @apply hidden; 
+  }
+
+  .section-subnav .active {
+    @apply text-teal-600 decoration-teal-700 decoration-2 underline-offset-2 hover:text-teal-900;
+  }
+}
