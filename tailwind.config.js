@@ -9,6 +9,7 @@ module.exports = {
       },
     },
   },
+  safelist: ['icon-GizmoMinus', 'icon-GizmoPlus'],
   plugins: [],
 }
 

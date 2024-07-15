@@ -1,6 +1,10 @@
 new Vue({
   el: '#dashboard',
   data: {
+      staticContent: [],
+      siteName: '',
+      reportDate: '',
+      summary: '',
       issues: [],
       colorContrast: [],
       showQuotes: [],
@@ -40,7 +44,7 @@ new Vue({
     this.fetchData();
   },
   updated: function() {
-    if (!this.loaded && this.issues.length > 0) {
+    if (!this.loaded && this.issues.length > 0 && this.staticContent.length > 0) {
       setOnClick();
       this.loaded = true;
     }
@@ -109,16 +113,24 @@ new Vue({
   },
   methods: { 
     fetchData: function() {
-      fetch(dataPath)
-          .then(res => res.json())
-          .then(json => {
-            this.issues = json.myIssues;
-            this.colorContrast = json.myContrast;
-            this.showQuotes = json.myQuotes;
-
-            this.processContrast();
-            return json;
+      fetch(contentPath)
+        .then(res => res.json())
+        .then(json => {
+          this.staticContent = json;
         });
+      fetch(dataPath)
+        .then(res => res.json())
+        .then(json => {
+          this.siteName = json.report;
+          this.reportDate = json.dateOfReview;
+          this.summary = json.summary;
+          this.issues = json.myIssues;
+          this.colorContrast = json.myContrast;
+          this.showQuotes = json.myQuotes;
+
+          this.processContrast();
+          return json;
+      });
     },
     changeState: function(state) {
       this.state = state;

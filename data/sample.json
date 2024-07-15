@@ -1,6 +1,7 @@
 {
   "report": "Sample Website",
   "dateOfReview": "July 2024",
+  "summary": "This is an example of an accessibility report built using Vue.JS. The site and list of issues are made up and for sample data only.",
   "myIssues": [
     {
       "description": "An image with a null alt attribute should not have title, aria-label or aria-labelledby attributes.",

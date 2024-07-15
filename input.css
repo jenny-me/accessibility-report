@@ -15,6 +15,7 @@
   h4 {
     @apply text-lg font-semibold font-sans;
   }
+  
   p {
     @apply my-4;
   }
@@ -32,6 +33,10 @@
   .report-card {
     @apply border border-gray-400 border-t-8 border-t-teal-600 w-11/12 rounded-xl p-6 my-6 mx-auto max-w-screen-xl;
   }
+  .report-card.failed {
+    @apply border-t-red-600;
+  }
+
   .table {
     @apply my-4;
   }
@@ -41,8 +46,35 @@
   .table tr.total {
     @apply font-bold border-t-4 border-black;
   }
+  .table tr.fail {
+    @apply bg-red-100;
+  }
   .table td, .table th {
     @apply px-4 py-1;
+  }
+
+  .listToggle {
+    @apply flex justify-start items-center py-1 px-3 bg-teal-600 bg-opacity-15 border border-teal-800;
+  }
+  .listToggle span {
+    @apply rounded-full h-4 w-4 bg-teal-800 text-white mr-2 flex justify-center items-center;
+  }
+  .icon-GizmoPlus::before { 
+    display: block;
+    content: '+';
+  }
+  .icon-GizmoMinus::before { 
+    display: block;
+    content: '-';
+  }
+  .locationList {
+    @apply border border-teal-800 border-t-0 p-4;
+  }
+  .locationList a {
+    @apply text-teal-600 underline underline-offset-2 
+          hover:text-teal-800 hover:decoration-teal-800 
+          active:text-teal-800 active:decoration-teal-800
+          focus:text-teal-800 focus:decoration-teal-800;
   }
 
   .js .js-warning { 

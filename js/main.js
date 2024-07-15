@@ -57,7 +57,6 @@ function setOnClick() {
 		/*	Hide Explanation lists */
 	$('#resources .explanationList').hide();
 
-
 	//	List Toggle Functionality
 	$('#results .listToggle').on('click', function() {
 		var myList = $(this).next('.locationList');
@@ -67,21 +66,6 @@ function setOnClick() {
 		} else {
 			myList.show();
 			$(this).html("<span class='icon-GizmoMinus'></span> Hide Locations");
-		}
-
-		return false;
-	});
-
-	//	Explanation Toggle Functionality
-	$('#resources .listToggle').on('click', function() {
-		var myList = $(this).next('.explanationList');
-
-		if ( myList.is(":visible") ) {
-			myList.hide();
-			$(this).html("<span class='icon-GizmoPlus'></span> Why is this important?");
-		} else {
-			myList.show();
-			$(this).html("<span class='icon-GizmoMinus'></span> Why is this important?");
 		}
 
 		return false;

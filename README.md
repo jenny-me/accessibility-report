@@ -11,8 +11,9 @@ The report was built using Vue.js v2 and had pulled all of the WCAG and report c
 
 [x] Move color contrast check into main app  
 [x] Separate out site data into JSON file  
-[] Reduce hard-coded WCAG information by pulling it out into JSON file  
+[x] Reduce hard-coded WCAG information by pulling it out into JSON file  
 [] Update report to Vue 3  
 [] Design updates (especially on dark mode)  
+[] Update to WCAG 2.2
 [] Add severity information to issues  
 [] Add ability to add detailed notes (for fix instructions, info on where to find issue or how to replicate, etc)
